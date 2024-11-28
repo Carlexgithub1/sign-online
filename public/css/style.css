@@ -1,3 +1,5 @@
+/* BOILERPLATES */
+
 * {
     margin: 0;
     padding: 0;
@@ -17,10 +19,11 @@ body {
     --white: #fff;
 }
 
-/* ------- */
+/* TEMPLATE */
+
 .wrapper {
     width: 90%;
-    max-width: 360px;
+    max-width: 30rem;
     margin-inline: auto;
 }
 
@@ -40,22 +43,88 @@ body {
     flex-direction: column;
 }
 
+/* HEADER - REG */
 .header {
     padding-top: 2rem;
     margin-bottom: 2rem;
+}
+
+.header .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header .wrapper .logo {
+    display: none;
+    width: fit-content;
+}
+
+.header .wrapper .title {
+    color: var(--white);
+}
+
+.header .wrapper .description {
+    opacity: .5;
+    width: 100%;
+    max-width: 20rem;
     text-align: center;
 }
 
-.title span {
-    color: var(--accent);
+.header .wrapper .btn-openfile {
+    display: none;
+    gap: .5rem;
 }
+
+/* HEADER - SMALL */
+
+.header.small .wrapper {
+    flex-direction: row;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+}
+
+.header.small .wrapper .logo {
+    display: block;
+    height: 2rem;
+    margin-right: .5rem;
+}
+
+.header.small .wrapper .title {
+    display: none;
+}
+
+
+.header.small .wrapper .description {
+    display: none;
+}
+
+.header.small .wrapper .btn-openfile-header {
+    display: flex;
+    margin-left: auto;
+}
+
+
+/* MAIN */
 
 .main {
     width: 100%;
     height: 100%;
 }
 
-.step-01 {
+.main .section {
+    display: none;
+}
+
+.main .section.visible {
+    display: block;
+}
+
+/* SECTION : STEP-01 */
+
+.step-01 .wrapper {
     width: 100%;
     height: 100%;
     min-height: 200px;
@@ -71,6 +140,21 @@ body {
     gap: .5rem;
 }
 
+.step-01 .wrapper .btn-openfile {
+    font-size: 1.5rem;
+}
+
+/* VIEWER */
+.viewer {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    /* background: red; */
+    overflow: hidden;
+}
+
+/* FOOTER */
+
 .footer {
     width: 100%;
     height: fit-content;
@@ -85,17 +169,42 @@ body {
     justify-content: space-between;
 }
 
-.page-nav {
+.footer .btn {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .5rem;
+}
+
+.footer .page-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: .5rem;
+    gap: 1rem;
+}
+
+.footer .page-nav .btn {
+    border: none;
+    border-radius: 2rem;
+}
+
+.footer .page-nav .btn:hover {
+    background-color: #fff2;
 }
 
 /* COMPONENTS */
 
-.btn {
+/* TYPOGRAPHIE */
 
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+h5 span {
+    color: var(--accent);
+}
+
+/* BUTTONS */
+.btn {
     padding: .6rem .6rem;
 
     border-radius: .5rem;
@@ -104,22 +213,6 @@ body {
     background: none;
 
     cursor: pointer;
-}
-
-.btn-footer {
-    width: 3rem;
-    height: 3rem;
-    border-radius: .5rem;
-}
-
-.btn-page-nav {
-    border: none;
-    /* background-color: #fff1; */
-    border-radius: 2rem;
-}
-
-.btn-page-nav:hover {
-    background-color: #fff2;
 }
 
 .btn:hover {
@@ -131,8 +224,7 @@ body {
     color: var(--black);
 }
 
-.btn-openfile {
-    font-size: 1.5rem;
+.btn.cta {
     background-color: var(--accent);
     border-color: var(--accent);
 }

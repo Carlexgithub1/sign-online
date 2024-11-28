@@ -12,6 +12,7 @@
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>SIGN ONLINE</title>
+    <link rel="shortcut icon" href="/public/ico.svg" type="image/svg">
 </head>
 
 <body>
@@ -19,23 +20,32 @@
     <div class="container">
 
         <!-- HEADER -->
-        <header class="header">
+        <header class="header small">
             <div class="wrapper">
-                <h1 class="title"><span>Sign</span> online</h1>
+                <a href="/" class="logo">
+                    <img src="/public/ico.svg" height="100%" alt="logo sign online">
+                </a>
+                <a href="/" class="title">
+                    <h1><span>Sign</span> online</h1>
+                </a>
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, dolore.</p>
+                <button class="btn cta btn-openfile" id="btn-openfile-header"><i
+                        class="fa-regular fa-folder"></i></button>
             </div>
         </header>
 
         <!-- MAIN -->
         <main class="main">
-            <div class="wrapper">
-                <section class="step-01">
+            <section class="section step-01 visible">
+                <div class="wrapper">
                     <i class="fa-regular fa-folder"></i>
-                    <button class="btn btn-openfile" id="btn-openfile">Choose a file</button>
+                    <button class="btn cta btn-openfile" id="btn-openfile">Selectionner un fichier</button>
                     <input type="file" accept=".pdf" name="current-file" id="current-file" hidden>
-                </section>
-
-                <section class="display"></section>
-            </div>
+                </div>
+            </section>
+            <section class="section viewer " id="viewer">
+                <canas class="currentpage" id="currentpage"></canas>
+            </section>
         </main>
 
         <!-- FOOTER -->
