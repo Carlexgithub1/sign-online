@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition: all ease 150ms;
+}
+
+/* COLORS */
+body {
+    --prim: hsl(0, 0%, 10%);
+    --sec: hsl(0, 0%, 90%);
+    --accent: hsl(216, 100%, 50%);
+    --black: hsl(0, 0%, 5%);
+    --white: #fff;
+}
+
+/* ------- */
+.wrapper {
+    width: 90%;
+    max-width: 360px;
+    margin-inline: auto;
+}
+
+/* MAIN */
+
+body {
+    width: 100vw;
+    height: 100vh;
+    color: var(--white);
+    background-color: var(--prim);
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.title span {
+    color: var(--accent);
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+}
+
+.step-01 {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    max-height: 300px;
+
+    border-radius: 1rem;
+    border: 2px dashed var(--sec);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.footer {
+    width: 100%;
+    height: fit-content;
+    padding: 1rem 0;
+    /* min-height: 2rem; */
+    margin-top: auto;
+    background-color: var(--black);
+}
+
+.footer .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+}
+
+/* COMPONENTS */
+
+.btn {
+
+    padding: .6rem .6rem;
+
+    border-radius: .5rem;
+    border: 1px solid var(--sec);
+    color: var(--white);
+    background: none;
+
+    cursor: pointer;
+}
+
+.btn-footer {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .5rem;
+}
+
+.btn-page-nav {
+    border: none;
+    /* background-color: #fff1; */
+    border-radius: 2rem;
+}
+
+.btn-page-nav:hover {
+    background-color: #fff2;
+}
+
+.btn:hover {
+    opacity: .8;
+}
+
+.btn:active {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.btn-openfile {
+    font-size: 1.5rem;
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
