@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>SIGN ONLINE</title>
     <link rel="shortcut icon" href="/public/ico.svg" type="image/svg">
+    <script src="/public/js/vendor/pdf-lib.js"></script>
+    <title>SIGN ONLINE</title>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
     <div class="container">
 
         <!-- HEADER -->
-        <header class="header">
+        <header class="header small">
             <div class="wrapper">
                 <a href="/" class="logo">
                     <img src="/public/ico.svg" height="100%" alt="logo sign online">
@@ -29,29 +30,34 @@
                     <h1><span>Sign</span> online</h1>
                 </a>
                 <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, dolore.</p>
-                <button class="btn cta btn-openfile" id="btn-openfile-header"><i
-                        class="fa-regular fa-folder"></i></button>
+                <h5 class="viewer-title" id="viewer-title"></h5>
+                <button class="btn cta btn-loadfile" id="btn-loadfile-header">
+                    <i class="fa-regular fa-folder"></i>
+                </button>
             </div>
         </header>
 
         <!-- MAIN -->
         <main class="main">
-            <section class="section step-01 visible">
+            <section class="section loadfile">
                 <div class="wrapper">
                     <i class="fa-regular fa-folder"></i>
-                    <button class="btn cta btn-openfile" id="btn-openfile">Selectionner un fichier</button>
-                    <input type="file" accept=".pdf" name="current-file" id="current-file" hidden>
+                    <button class="btn cta btn-loadfile" id="btn-loadfile">Selectionner un fichier</button>
+                    <input type="file" accept=".pdf" name="file-input" id="file-input" hidden>
                 </div>
             </section>
-            <section class="section viewer " id="viewer">
-                <canas class="currentpage" id="currentpage"></canas>
+            <section class="section viewer visible">
+                <header class="title">
+
+                </header>
+                <iframe class="pdf-viewer" id="pdf-viewer"></iframe>
             </section>
         </main>
 
         <!-- FOOTER -->
         <footer class="footer">
             <div class="wrapper">
-                <button class="btn btn-footer btn-openfile-footer" id="btn-openfile-footer">
+                <button class="btn btn-footer btn-loadfile-footer" id="btn-loadfile-footer">
                     <i class="fa-regular fa-folder"></i>
                 </button>
                 <div class="page-nav">
@@ -59,13 +65,17 @@
                         <i class="fa-solid fa-arrow-left"></i>
                     </button>
 
-                    <p class="page-num">0/<span>0</span></p>
+                    <p class="page-num">
+                        <span id="viewer-currentpage">0</span>
+                        /
+                        <span id="viewer-pagecount">0</span>
+                    </p>
 
                     <button class="btn btn-footer btn-page-nav btn-page-next" id="btn-page-next">
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
-                <button class="btn btn-footer btn-select-zone" id="btn-select-zone">
+                <button class="btn btn-footer btn-select-zone active" id="btn-select-zone">
                     <i class="fa-solid fa-crop"></i>
                 </button>
             </div>
@@ -73,7 +83,10 @@
 
     </div>
 
-    <script src="/public/js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.mjs" type="module">
+        console.log(pdfjsLib);
+    </script>
+    <script src="/public/js/index.js" type="module"></script>
 </body>
 
 </html>
