@@ -1,6 +1,3 @@
-// import * as PDFLib from "./vendor/pdf-lib";
-console.log(pdfjsLib)
-
 const sections = {
     loadfile: document.querySelector(".section.loadfile"),
     viewer: document.querySelector(".section.viewer")
@@ -12,6 +9,10 @@ const buttons = {
     btn_page_prev: document.getElementById("btn-page-prev"),
     btn_page_next: document.getElementById("btn-page-next"),
     btn_select_zone: document.getElementById("btn-select-zone"),
+}
+
+const partials = {
+    header: document.querySelector(".header")
 }
 
 const file_input = document.getElementById("file-input");
@@ -37,19 +38,22 @@ file_input.onchange = loadPDF;
 function loadFile() { file_input.click() }
 
 async function loadPDF(input) {
+    reduceHeader();
     const file = await input.target.files[0].arrayBuffer();
-    const doc = await PDFLib.PDFDocument.load(file);
-    current_document = getDocument(doc);
-    console.log(current_document);
+    console.log("File : ", file);
+
+    const loadingtask = pdfjsLib.getDocument(file);
+    await loadingtask.promise.then(getDocument);
+    console.log("Current document : ", current_document);
 
     await renderDocument(current_document);
 }
 
 async function renderDocument(doc) {
-    setViewerAttribute("title", doc.title);
+    setViewerAttribute("title", doc.metadata.info.Title);
     setViewerAttribute("pagecount", doc.pagecount);
-    setViewerAttribute("currentpage", doc.currentpage + 1);
-    await loadPage(doc.pages[doc.currentpage]);
+    setViewerAttribute("currentpage", doc.currentpage);
+    await renderPage(await doc.file.getPage(doc.currentpage));
 }
 
 function setViewerAttribute(attr, value) {
@@ -62,27 +66,31 @@ function setViewerAttribute(attr, value) {
     let container = document.getElementById(attributes_ids[attr]);
     container.innerText = value;
 }
-async function loadPage(page) {
-    // const context = pdf_viewer.getContext("2d");
-    // const viewport = page.getSize();
+async function renderPage(page) {
+    console.log("Rendering page...")
+    const canvas = pdf_viewer;
+    const canvasContext = canvas.getContext("2d");
+    const viewport = await page.getViewport({ scale: 1 });
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
 
-    // pdf_viewer.width = viewport.width;
-    // pdf_viewer.height = viewport.height;
+    const rendercontext = { canvasContext, viewport };
+    await page.render(rendercontext);
 
-    const pdf_page_datauri = await page.saveAsBase64({ dataUri: true });
-    pdf_viewer.src = pdf_page_datauri
-    // console.log("Loading page: ", page);
+    console.log("Page rendered succesfully!")
 }
 
 function updateCurrentDocument() {
     renderDocument(current_document);
 }
 
-function getDocument(doc) {
-    return {
+async function getDocument(doc) {
+
+    current_document = {
         file: doc,
-        pagecount: doc.getPageCount(),
-        currentpage: 0
+        pagecount: doc.numPages,
+        currentpage: 1,
+        metadata: await doc.getMetadata()
     }
 }
 
@@ -100,7 +108,7 @@ function toogleSelection(e) {
 }
 function nextPage() {
     if (!current_document) return
-    if (current_document.currentpage + 1 >= current_document.pagecount)
+    if (current_document.currentpage + 1 > current_document.pagecount)
         throw new RangeError("Page out of range");
 
     ++current_document.currentpage;
@@ -108,8 +116,20 @@ function nextPage() {
 }
 function previousPage() {
     if (!current_document) return
-    if (current_document.currentpage - 1 < 0) throw new RangeError("Page out of range");
+    if (current_document.currentpage - 1 <= 0) throw new RangeError("Page out of range");
 
     --current_document.currentpage;
     renderDocument(current_document);
+}
+
+function reduceHeader(reduce = true) {
+    if (!reduce) {
+        partials.header.classList.remove("small");
+        sections.loadfile.classList.add("visible");
+        sections.viewer.classList.remove("visible");
+    } else {
+        partials.header.classList.add("small");
+        sections.loadfile.classList.remove("visible");
+        sections.viewer.classList.add("visible");
+    }
 }

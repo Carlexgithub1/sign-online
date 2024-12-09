@@ -166,6 +166,7 @@ body {
 
 .pdf-viewer {
     margin-inline: auto;
+    overflow: scroll;
     /* overflow: hidden; */
 }
 

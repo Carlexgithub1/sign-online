@@ -12,7 +12,7 @@
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="/public/ico.svg" type="image/svg">
-    <script src="/public/js/vendor/pdf-lib.js"></script>
+    <!-- <script src="/public/js/vendor/pdf-lib.js"></script> -->
     <title>SIGN ONLINE</title>
 </head>
 
@@ -21,7 +21,7 @@
     <div class="container">
 
         <!-- HEADER -->
-        <header class="header small">
+        <header class="header">
             <div class="wrapper">
                 <a href="/" class="logo">
                     <img src="/public/ico.svg" height="100%" alt="logo sign online">
@@ -39,18 +39,18 @@
 
         <!-- MAIN -->
         <main class="main">
-            <section class="section loadfile">
+            <section class="section loadfile visible">
                 <div class="wrapper">
                     <i class="fa-regular fa-folder"></i>
                     <button class="btn cta btn-loadfile" id="btn-loadfile">Selectionner un fichier</button>
                     <input type="file" accept=".pdf" name="file-input" id="file-input" hidden>
                 </div>
             </section>
-            <section class="section viewer visible">
+            <section class="section viewer">
                 <div class="wrapper">
                     <!-- <header class="title">
                     </header> -->
-                    <iframe class="pdf-viewer" id="pdf-viewer"></iframe>
+                    <canvas class="pdf-viewer" id="pdf-viewer"></canvas>
                 </div>
             </section>
         </main>
@@ -84,9 +84,10 @@
 
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.mjs" type="module">
-        console.log(pdfjsLib);
+
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.mjs">
     </script>
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.worker.mjs"></script>
     <script src="/public/js/index.js" type="module"></script>
 </body>
 
