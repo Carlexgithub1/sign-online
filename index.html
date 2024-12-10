@@ -37,6 +37,14 @@
             </div>
         </header>
 
+        <!-- SIGN -->
+        <section class="section sign">
+            <div class="wrapper">
+                <canvas class="signpad" id="signpad"></canvas>
+                <div class="signpad-backdrop" id="signpad-backdrop"></div>
+            </div>
+        </section>
+
         <!-- MAIN -->
         <main class="main">
             <section class="section loadfile visible">
@@ -50,6 +58,7 @@
                 <div class="wrapper">
                     <!-- <header class="title">
                     </header> -->
+                    <canvas class="pdf-viewer-overlay" id="pdf-viewer-overlay"></canvas>
                     <canvas class="pdf-viewer" id="pdf-viewer"></canvas>
                 </div>
             </section>
@@ -76,7 +85,7 @@
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
-                <button class="btn btn-footer btn-select-zone active" id="btn-select-zone">
+                <button class="btn btn-footer btn-select-zone" id="btn-select-zone">
                     <i class="fa-solid fa-crop"></i>
                 </button>
             </div>
@@ -89,6 +98,7 @@
     </script>
     <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.worker.mjs"></script>
     <script src="/public/js/index.js" type="module"></script>
+    <script src="/public/js/selection.js"></script>
 </body>
 
 </html>

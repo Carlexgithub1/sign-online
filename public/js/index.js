@@ -76,8 +76,9 @@ async function renderPage(page) {
 
     const rendercontext = { canvasContext, viewport };
     await page.render(rendercontext);
-
     console.log("Page rendered succesfully!")
+
+    canvas.dispatchEvent(new Event("custom:resize"));
 }
 
 function updateCurrentDocument() {
@@ -97,14 +98,16 @@ async function getDocument(doc) {
 // ANIMATION
 
 function toogleSelection(e) {
+    let ToogleSelectionEvent = function (active) { return new CustomEvent("custom:toogleselection", { detail: { active } }) };
     const classname = "active";
     if (!e.target.classList.contains(classname)) {
         e.target.classList.add(classname);
-        // console.log("Selection active");
+        e.target.dispatchEvent(ToogleSelectionEvent(true));
     } else {
         e.target.classList.remove(classname);
-        // console.log("Selection inactive");
+        e.target.dispatchEvent(ToogleSelectionEvent(false));
     }
+
 }
 function nextPage() {
     if (!current_document) return
